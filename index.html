@@ -24,15 +24,27 @@
     <link rel="me" href="tel:+386661234433">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link rel="stylesheet" href="https://volodymyrkushnir.com/assets/stylesheets/base.css">
+    <link rel="stylesheet" href="assets/styles/avatar.css">
+    <link rel="stylesheet" href="assets/styles/tossCoinBtn.css">
 </head>
 <body>
+<header>
+    <div class="credits">
+        Inspired by <a href="https://www.youtube.com/watch?v=c0i88t0Kacs&t=36s" rel="external"><strong>Youtube
+        video</strong></a> &#x1F615;
+    </div>
+</header>
 <main>
     <article>
         <div class="page" style="border-color: midnightblue;">
             <div class="stackable grid">
                 <div class="row">
                     <div class="three wide center aligned column">
-                        <!-- Avatar -->
+                        <div class="avatar-wrapper">
+                            <object class="avatar" data="./assets/images/avatar.png" role="img"
+                                    aria-label="My profile picture"></object>
+
+                        </div>
                     </div>
                     <div class="thirteen wide column">
                         <div class="stackable grid">
@@ -291,11 +303,48 @@
                                 <span class="tag"><a href="https://www.netflix.com/fi-en/title/80189685" rel="external"><strong>The Witcher on Netflix</strong></a></span>
                             </p>
                         </section>
+                        <section>
+                            <h3>Wealth</h3>
+                            <button id="tossCoin"><span>Toss a coin to me!</span></button>
+                        </section>
                     </div>
                 </div>
             </div>
         </div>
     </article>
 </main>
+<footer>
+    <em>“Sorry for spoilers”</em>&nbsp;&#x1F631;
+</footer>
+<script>
+    let generateGradient = (part) => {
+        return 'linear-gradient(to right,gold ' + part * 10 + '%, silver ' + part * 10 + '%';
+    }
+    window.onload = () => {
+        function switchToColor(color) {
+            try {
+                document.querySelectorAll(".page").forEach(function (page) {
+                    page.style.borderColor = color;
+                });
+            } catch (error) {
+            }
+        }
+
+        let generateFunction = (button) => {
+            let clicked = 1;
+            return function () {
+                if (clicked > 10) {
+                    switchToColor("gold");
+                } else {
+                    button.style.background = generateGradient(clicked);
+                }
+                clicked++;
+            }
+        }
+        let btn = document.getElementById('tossCoin');
+        btn.addEventListener('click', generateFunction(btn));
+    }
+</script>
+
 </body>
 </html>
