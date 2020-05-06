@@ -316,7 +316,33 @@
     <em>“Sorry for spoilers”</em>&nbsp;&#x1F631;
 </footer>
 <script>
+    let generateGradient = (part) => {
+        return 'linear-gradient(to right,gold ' + part * 10 + '%, silver ' + part * 10 + '%';
+    }
+    window.onload = () => {
+        function switchToColor(color) {
+            try {
+                document.querySelectorAll(".page").forEach(function (page) {
+                    page.style.borderColor = color;
+                });
+            } catch (error) {
+            }
+        }
 
+        let generateFunction = (button) => {
+            let clicked = 1;
+            return function () {
+                if (clicked > 10) {
+                    switchToColor("gold");
+                } else {
+                    button.style.background = generateGradient(clicked);
+                }
+                clicked++;
+            }
+        }
+        let btn = document.getElementById('tossCoin');
+        btn.addEventListener('click', generateFunction(btn));
+    }
 </script>
 </body>
 </html>
