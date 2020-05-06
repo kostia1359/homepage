@@ -25,6 +25,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link rel="stylesheet" href="https://volodymyrkushnir.com/assets/stylesheets/base.css">
     <link rel="stylesheet" href="assets/styles/avatar.css">
+    <link rel="stylesheet" href="assets/styles/tossCoinBtn.css">
 </head>
 <body>
 <header>
@@ -302,6 +303,10 @@
                                 <span class="tag"><a href="https://www.netflix.com/fi-en/title/80189685" rel="external"><strong>The Witcher on Netflix</strong></a></span>
                             </p>
                         </section>
+                        <section>
+                            <h3>Wealth</h3>
+                            <button id="tossCoin"><span>Toss a coin to me!</span></button>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -312,7 +317,33 @@
     <em>“Sorry for spoilers”</em>&nbsp;&#x1F631;
 </footer>
 <script>
+    let generateGradient = (part) => {
+        return 'linear-gradient(to right,gold ' + part * 10 + '%, silver ' + part * 10 + '%';
+    }
+    window.onload = () => {
+        function switchToColor(color) {
+            try {
+                document.querySelectorAll(".page").forEach(function (page) {
+                    page.style.borderColor = color;
+                });
+            } catch (error) {
+            }
+        }
 
+        let generateFunction = (button) => {
+            let clicked = 1;
+            return function () {
+                if (clicked > 10) {
+                    switchToColor("gold");
+                } else {
+                    button.style.background = generateGradient(clicked);
+                }
+                clicked++;
+            }
+        }
+        let btn = document.getElementById('tossCoin');
+        btn.addEventListener('click', generateFunction(btn));
+    }
 </script>
 </body>
 </html>
